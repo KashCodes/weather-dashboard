@@ -26,8 +26,21 @@
     </header>
 
     <!-- Main Div Body Starts -->
-    <div>
-      
+    <div class="container-fluid">
+      <div class="row">
+        <aside class="col-lg-3 bg-light">
+          <h4 class="text-dark">Search for a City:</h4>
+          <form class="form-inline form-group">
+              <input type="text" class="form-control" id="search-value" placeholder="Enter a City...">
+            <button  class="btn btn-primary"> FONT AWESOME </button>
+          </form>
+          <ul class="city-history list-group"></ul>
+        </aside>
+        <div class="col-lg-9">
+          <div id="today" class="mt-2 mb-2"></div>
+          <div id="forecast" class="mt-2 mb-2"></div>
+        </div>
+      </div>
     </div>
 
     <!-- JQuery & Bootstrap jQuery CDN -->
