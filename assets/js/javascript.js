@@ -7,6 +7,7 @@ $(document).ready(function () {
   // Function to connect to today's current weather
   function currentWeather(today){
 
+    /* Need to set up function to capture city and replace with variable in API   */
     let currentApiUrl = 'api.openweathermap.org/data/2.5/weather?q=' + 'phoenix' + '&appid=' + apiKey;
     console.log(currentApiUrl);
     console.log('Connected to Current Weather API');
@@ -17,11 +18,13 @@ $(document).ready(function () {
   // Function to connect to 5-day forecast's API
   function fiveDayForecast(forcast){
 
+    /* Need to set up function to capture city and replace with variable in API   */
     let forecastApiUrl = 'api.openweathermap.org/data/2.5/forecast?q=' + 'phoenix' + '&appid=' + apiKey;
     console.log(forecastApiUrl)
     console.log('Connected to 5-Day Forecast API')
   }
 
+  //Add Event Listen for Button click and pull search data
 
   //Function Hardcoded Calls
   fiveDayForecast();
