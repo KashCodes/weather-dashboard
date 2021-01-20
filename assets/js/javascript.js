@@ -22,11 +22,19 @@ $(document).ready(function () {
     let forecastApiUrl = 'api.openweathermap.org/data/2.5/forecast?q=' + 'phoenix' + '&appid=' + apiKey;
     console.log(forecastApiUrl)
     console.log('Connected to 5-Day Forecast API')
-  }
+  };
+
+  //Function to connect to UV Index's API
+  function uvIndex(index){
+    let uvIndexApiUrl = 'http://api.openweathermap.org/data/2.5/uvi?lat=' + {lat} '&lon=' + {lon} '&appid=' + apiKey;
+    console.log(uvIndex);
+    console.log('Connected to UV Index API')
+  };
 
   //Add Event Listen for Button click and pull search data
 
   //Function Hardcoded Calls
+  uvIndex();
   fiveDayForecast();
   currentWeather();
 
