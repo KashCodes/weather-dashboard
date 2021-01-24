@@ -87,3 +87,61 @@ $("#cityInput").keypress(function(e){
     $("#citySearchBtn").click();
   }
 })
+
+async function displayWeather() {
+
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&units=imperial&appid=9f9176e2a3294a9e5a94e22016800ff4";
+  
+  var response = await $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+    console.log(response);
+  
+    var currentWeatherDiv = $("<div class='card-body' id='currentWeather'>");
+    var getCurrentCity = response.name;
+    var date = new Date();
+    var val=(date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+    var getCurrentWeatherIcon = response.weather[0].icon;
+    var displayCurrentWeatherIcon = $("<img src = http://openweathermap.org/img/wn/" + getCurrentWeatherIcon + ".png />");
+    var currentCityEl = $("<h3 class = 'card-body'>").text(getCurrentCity+" ("+val+")");
+    currentCityEl.append(displayCurrentWeatherIcon);
+    currentWeatherDiv.append(currentCityEl);
+    var getTemp = response.main.temp.toFixed(1);
+    var tempEl = $("<p class='card-text'>").text("Temperature: "+getTemp+"° F");
+    currentWeatherDiv.append(tempEl);
+    var getHumidity = response.main.humidity;
+    var humidityEl = $("<p class'card-text'>").text("Humidity: "+getHumidity+"%");
+    currentWeatherDiv.append(humidityEl);
+    var getWindSpeed = response.wind.speed.toFixed(1);
+    var windSpeedEl = $("<p class='card-text'>").text("Wind Speed: "+getWindSpeed+" mph");
+    currentWeatherDiv.append(windSpeedEl);
+    var getLong = response.coord.lon;
+    var getLat = response.coord.lat;
+  
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+getLat+"&lon="+getLong+"&appid=9f9176e2a3294a9e5a94e22016800ff4"
+    var uvResponse = await $.ajax({
+        url: uvURL,
+        method: "GET"
+    })
+  
+    //Acquiring Uv index info and setting a color value based on the value
+    var getUVIndex = uvResponse.value;
+    var uvNumber = $("<span>");
+    if (getUVIndex > 0 && getUVIndex <= 2.99){
+        uvNumber.addClass("low");
+    }else if(getUVIndex >= 3 && getUVIndex <= 5.99){
+        uvNumber.addClass("moderate");
+    }else if(getUVIndex >= 6 && getUVIndex <= 7.99){
+        uvNumber.addClass("high");
+    }else if(getUVIndex >= 8 && getUVIndex <= 10.99){
+        uvNumber.addClass("vhigh");
+    }else{
+        uvNumber.addClass("extreme");
+    } 
+    uvNumber.text(getUVIndex);
+    var uvIndexEl = $("<p class='card-text'>").text("UV Index: ");
+    uvNumber.appendTo(uvIndexEl);
+    currentWeatherDiv.append(uvIndexEl);
+    $("#weatherContainer").html(currentWeatherDiv);
+  }
