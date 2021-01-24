@@ -64,7 +64,7 @@ $("#citySearchBtn").on("click", function(event){
 
   cityname = $("#cityInput").val().trim();
   if(cityname === ""){
-    alert("Please enter a city name I am not a mind reader")
+    alert("Please enter a valid city name.")
 
   }else if (cityList.length >= 5){
     cityList.shift();
@@ -88,6 +88,8 @@ $("#cityInput").keypress(function(e){
   }
 })
 
+
+//.ajax pull for Today's weather card and appending them to dom
 async function displayWeather() {
 
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&units=imperial&appid=9f9176e2a3294a9e5a94e22016800ff4";
@@ -145,3 +147,56 @@ async function displayWeather() {
     currentWeatherDiv.append(uvIndexEl);
     $("#weatherContainer").html(currentWeatherDiv);
   }
+
+
+  // An AJAX call for the 5 day forecast as well as displaying them to the DOM
+async function displayFiveDayForecast() {
+
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&units=imperial&appid=9f9176e2a3294a9e5a94e22016800ff4"
+
+  var response = await $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+  var forecastDiv = $("<div  id='fiveDayForecast'>");
+  var forecastHeader = $("<h3 class='pb-1 pt-2'>").text("5-Day Forecast");
+  forecastDiv.append(forecastHeader);
+  var cardDeck = $("<div  class='card-deck d-flex flex-wrap'>");
+  forecastDiv.append(cardDeck);
+
+  console.log(response);
+  for (i=0; i<5;i++){
+      var forecastCard = $("<div class='card flex-fill m-3'>");
+      var cardBody = $("<div class='card-body bg-primary text-white rounded'>");
+      var date = new Date();
+      var val=(date.getMonth()+1)+"/"+(date.getDate()+i+1)+"/"+date.getFullYear();
+      var forecastDate = $("<h5 class='card-title'>").text(val);
+
+    cardBody.append(forecastDate);
+    var getCurrentWeatherIcon = response.list[i].weather[0].icon;
+    console.log(getCurrentWeatherIcon);
+    var displayWeatherIcon = $("<img src = https://openweathermap.org/img/wn/" + getCurrentWeatherIcon + ".png />");
+    cardBody.append(displayWeatherIcon);
+    var getTemp = response.list[i].main.temp;
+    var tempEl = $("<p class='card-text'>").text("Temp: "+getTemp+"° F");
+    cardBody.append(tempEl);
+    var getHumidity = response.list[i].main.humidity;
+    var humidityEl = $("<p class='card-text'>").text("Humidity: "+getHumidity+"%");
+    cardBody.append(humidityEl);
+    forecastCard.append(cardBody);
+    cardDeck.append(forecastCard);
+  }
+  $("#forecastContainer").html(forecastDiv);
+}
+
+// This sends the city in the history to the displayWeather function
+function historyDisplayWeather(){
+  cityname = $(this).attr("data-name");
+  displayWeather();
+  displayFiveDayForecast();
+  console.log(cityname);
+
+}
+
+// onclick for history display
+$(document).on("click", ".city" , historyDisplayWeather); 
