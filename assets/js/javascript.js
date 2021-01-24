@@ -81,4 +81,9 @@ $("#citySearchBtn").on("click", function(event){
 
 });
 
-
+// Event handler if the user chooses to hit enter instead of clicking
+$("#cityInput").keypress(function(e){
+  if(e.which == 13){
+    $("#citySearchBtn").click();
+  }
+})
