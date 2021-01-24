@@ -7,14 +7,18 @@ const apiKey = '&units=imperial&appid=9f9176e2a3294a9e5a94e22016800ff4';
 let city = $('#search-value').val();
 let date = new Date();
 
+function getCityName() {
+  var city = $('#search-value').val();
+ //passes that variable into this function to use it
+  getTodayApi(city);
+ }
 
-
-function getTodayApi () {
+function getTodayApi (city) {
   // show 5 day forecast header
   $('#forecastH5').addClass('show');
 
   //get the value of the city input from user
-  city = $('#search-value').val();
+  // city = $('#search-value').val();
 
   //clear input box
   $('#search-value').val("");
@@ -28,62 +32,58 @@ function getTodayApi () {
   //fetch API
   fetch(queryApi)
   .then(function (response){
-
-    if (response.ok) {
-      console.log(response);
-      response.json().then(function(response){
-        console.log(response);
-        console.log("We Connected to API");
-        console.log("Coordinates");
-        console.log(response.coord);
-        console.log("Coor Lon");
-        console.log(response.coord.lon);
-        console.log("Coor Lat");
-        console.log(response.coord.lat);
-        console.log(response.name);
-        console.log("Humidity");
-        console.log(response.main.humidity);
-        console.log("Weather Icon");
-        console.log(response.weather[0].description);
-        console.log(response.weather[0].icon);
-        console.log("Temp");
-        console.log(response.main.temp);
-        console.log("Wind Speed");
-        console.log(response.wind.speed);
+    console.log("almost there")
+    return response.json()
+  })
+  .then(function(data){
+        console.log(data);
+        // console.log("We Connected to API");
+        // console.log("Coordinates");
+        // console.log(data.coord);
+        // console.log("Coor Lon");
+        // console.log(data.coord.lon);
+        // console.log("Coor Lat");
+        // console.log(data.coord.lat);
+        // console.log(data.name);
+        // console.log("Humidity");
+        // console.log(data.main.humidity);
+        // console.log("Weather Icon");
+        // console.log(data.weather[0].description);
+        // console.log(data.weather[0].icon);
+        // console.log("Temp");
+        // console.log(data.main.temp);
+        // console.log("Wind Speed");
+        // console.log(data.wind.speed);
         
-        //List item in search history
-        let listItem = $("<li>").addClass("list-group-item").text(response.name);
-        $("#city-history").append(listItem);
+        // //List item in search history
+        // let listItem = $("<li>").addClass("list-group-item").text(data.name);
+        // $("#city-history").append(listItem);
 
 
-        $('#today').empty();
+        // $('#today').empty();
 
-        //get and set the content
-        const card = $("<div>").addClass("card");
-        const cardBody = $("<div>").addClass("card-body");
-        const city = $("<h3>").addClass("card-title").text(response.name);
-        const cityDate = $("<h4>").addClass("card-title").text(date.toLocaleDateString('en-US'));
-        const temperature = $("<p>").addClass("card-text current-temp").text("Temperature: " + response.main.temp + " °F");
-        const humidity = $("<p>").addClass("card-text current-humidity").text("Humidity: " + response.main.humidity + "%");
-        const wind = $("<p>").addClass("card-text current-wind").text("Wind Speed: " + response.wind.speed + " MPH");
-        const image = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
+        // //get and set the content
+        // const card = $("<div>").addClass("card");
+        // const cardBody = $("<div>").addClass("card-body");
+        // const city = $("<h3>").addClass("card-title").text(response.name);
+        // const cityDate = $("<h4>").addClass("card-title").text(date.toLocaleDateString('en-US'));
+        // const temperature = $("<p>").addClass("card-text current-temp").text("Temperature: " + data.main.temp + " °F");
+        // const humidity = $("<p>").addClass("card-text current-humidity").text("Humidity: " + data.main.humidity + "%");
+        // const wind = $("<p>").addClass("card-text current-wind").text("Wind Speed: " + data.wind.speed + " MPH");
+        // const image = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png")
 
-        //append to page 
-        city.append(cityDate, image)
-        cardBody.append(city, temperature, humidity, wind);
-        card.append(cardBody);
-        $("#today").append(card);
+        // //append to page 
+        // city.append(cityDate, image)
+        // cardBody.append(city, temperature, humidity, wind);
+        // card.append(cardBody);
+        // $("#today").append(card);
 
 
       });
-    } else {
-      alert("Error: " + response.statusText);
-    }
-  })
-  .catch(function(error) {
-    alert("Unable to connect to Open Weather");
-  });
-  console.log(response);
+      // .catch(function(error) {
+      //   alert("Unable to connect to Open Weather");
+      // });
+      console.log(response);
 };
 
 function getForecastApi () {
@@ -152,17 +152,17 @@ function getForecastApi () {
 
 
 //event listener for onclick run getTodayApi
-$('#searchBtn').on("click", getTodayApi)
+// $('#searchBtn').on("click", getTodayApi)
 
 //search functionkeypress 'enter' capture
-$('#search-value').keypress(function(event){
+// $('#search-value').keypress(function(event){
 
-  //keycode 13 = enter/return key
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    $('#searchBtn').click();
-  }
-});
+//   //keycode 13 = enter/return key
+//   if (event.keyCode === 13) {
+//     event.preventDefault();
+//     $('#searchBtn').click();
+//   }
+// });
 
 
 

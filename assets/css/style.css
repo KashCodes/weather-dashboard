@@ -5,3 +5,45 @@
 .show {
   display: block;
 }
+
+.low{
+  border-radius: 6px;
+  background-color: lightgreen;
+  padding: 5px;
+  color:linen;
+}
+
+.moderate{
+  border-radius: 6px;
+  background-color: gold;
+  padding: 5px;
+  color: black;
+}
+
+.high{
+  border-radius: 6px;
+  background-color: orangered;
+  padding: 5px;
+  color: black;
+}
+
+.vhigh{
+  border-radius: 6px;
+  background-color: crimson;
+  padding: 5px;
+  color: whitesmoke;
+}
+
+.extreme{
+  border-radius: 6px;
+  background-color: rgb(250, 94, 250);
+  padding: 5px;
+  color: whitesmoke;
+}
+
+.searchCol{
+  height: 100vh;
+  padding-top: 1rem;
+  padding-right: 2rem;
+  margin-right: -1rem;
+}

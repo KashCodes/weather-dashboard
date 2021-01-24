@@ -38,39 +38,34 @@
 
         <!-- Aside/left column w/ search and history -->
         <aside class="col-lg-3 bg-light pb-4 pt-2">
+          <!-- City Search Form-->
           <h4 class="text-dark">Search for a City:</h4>
           <form id="search-form" class="form-inline form-group">
             <input
               type="text"
               class="form-control"
-              id="search-value"
+              id="cityInput"
               placeholder="Enter a City..."
             />
-            <button id="searchBtn" class="btn btn-primary">
+            <button id="citySearchBtn" class="btn btn-primary">
               <i class="fas fa-search"></i>
             </button>
           </form>
 
           <!-- Display Search History-->
-          <ul id="city-history" class="list-group"></ul>
+          <div class="list-group" id="cityList"></div>
 
         </aside>
 
 
         <!-- Main/right column with Today and 5-day forecast cards-->
         <div class="col-lg-9 pb-4 pt-2">
-          <!-- Filler Today Card - needs to be  appended in w/ JS-->
-            <div id="today" class="mt-2 mb-2"></div>
-
-          <!--5-day forecast - Overall container -->
-          <div class="mt-2 mb-2">
-            <h3 id="forecastH5" class="pb-1 hide">5-Day Forecast:</h3>
-            <!-- 5-day forecast cards - needs to be appended in w/ JS -->
-            <div id="forcast"></div>
-          </div>
+          <!-- Weather Information Column -->
+        <div class="col-9">
+          <div class="card" style="width: 100%" id="weatherContainer"></div>
+          <div id="forecastContainer"></div>
         </div>
-
-
+        </div>
       </div>
     </div>
 
