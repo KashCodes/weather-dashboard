@@ -106,7 +106,7 @@ async function displayWeather() {
     var val=(date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
     var getCurrentWeatherIcon = response.weather[0].icon;
     var displayCurrentWeatherIcon = $("<img src = http://openweathermap.org/img/wn/" + getCurrentWeatherIcon + ".png />");
-    var currentCityEl = $("<h3 class = 'card-body'>").text(getCurrentCity+" ("+val+")");
+    var currentCityEl = $("<h3 class = 'pb-3'>").text(getCurrentCity+" ("+val+")");
     currentCityEl.append(displayCurrentWeatherIcon);
     currentWeatherDiv.append(currentCityEl);
     var getTemp = response.main.temp.toFixed(1);
@@ -158,8 +158,8 @@ async function displayFiveDayForecast() {
     url: queryURL,
     method: "GET"
   })
-  var forecastDiv = $("<div  id='fiveDayForecast'>");
-  var forecastHeader = $("<h3 class='pb-1 pt-2'>").text("5-Day Forecast");
+  var forecastDiv = $("<div  id='fiveDayForecast' >");
+  var forecastHeader = $("<h3 class='pb-1 pt-3'>").text("5-Day Forecast");
   forecastDiv.append(forecastHeader);
   var cardDeck = $("<div  class='card-deck d-flex flex-wrap'>");
   forecastDiv.append(cardDeck);
