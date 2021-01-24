@@ -20,8 +20,8 @@
       crossorigin="anonymous"
     />
 
-    <!-- My CSS Style Sheet 
-    <link rel="stylesheet" href="/assets/css/style.css" /> -->
+    <!-- My CSS Style Sheet --> 
+    <link rel="stylesheet" href="assets/css/style.css" />
 
     <title>Weather Dashboard</title>
   </head>
@@ -35,100 +35,42 @@
     <!-- Main Div Body Starts -->
     <div class="container-fluid">
       <div class="row mb-2">
+
         <!-- Aside/left column w/ search and history -->
         <aside class="col-lg-3 bg-light pb-4 pt-2">
           <h4 class="text-dark">Search for a City:</h4>
-          <form class="form-inline form-group">
+          <form id="search-form" class="form-inline form-group">
             <input
               type="text"
               class="form-control"
               id="search-value"
               placeholder="Enter a City..."
             />
-            <button class="btn btn-primary">
+            <button id="searchBtn" class="btn btn-primary">
               <i class="fas fa-search"></i>
             </button>
           </form>
-          <ul class="city-history list-group"></ul>
-          <!-- Filler List's - needs to be removed and appended in w/ JS -->
-          <li class="list-group-item active">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+
+          <!-- Display Search History-->
+          <ul id="city-history" class="list-group"></ul>
+
         </aside>
-        <!-- Main/right columne with Today and 5-day forecast cards-->
+
+
+        <!-- Main/right column with Today and 5-day forecast cards-->
         <div class="col-lg-9 pb-4 pt-2">
-          <div id="today" class="mt-2 mb-2">
-            <!-- Filler Today Card - needs to be removed and appended in w/ JS-->
-            <div class="card">
-              <div class="card-body">
-                <h3 class="pb-4">
-                  City Name (XX/XX/XXXX)<i class="fas fa-cloud"></i>
-                </h3>
-                <p class="pb-2">Tempurature: 90.9 F</p>
-                <p class="pb-2">Humidity: 41%</p>
-                <p class="pb-2">Wind Speed: 4.7 MPH</p>
-                <p class="pb-2">
-                  UV Index:
-                  <span class="bg-danger text-white rounded-sm p-1">9.49</span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div id="forecast" class="mt-2 mb-2">
-            <!-- Filler 5-day forecast - needs to be removed and appended in w/ JS -->
-            <h3 class="pb-1">5-Day Forecast:</h3>
-            <!-- Filler Cards -->
-            <div class="row">
-              <div class="col-lg-12 d-flex flex-wrap">
-                <div class="card flex-fill m-3">
-                  <div class="card-body bg-primary text-white rounded">
-                    <h5 class="card-title pb-3">XX/XX/XXXX</h5>
-                    <p class="pb-1"><i class="fas fa-sun"></i></p>
-                    <p>Temp: 86.84 F</p>
-                    <p>Humidity: 43%</p>
-                  </div>
-                </div>
-                <div class="card flex-fill m-3">
-                  <div class="card-body bg-primary text-white rounded">
-                    <h5 class="card-title pb-3">XX/XX/XXXX</h5>
-                    <p class="pb-1"><i class="fas fa-sun"></i></p>
-                    <p>Temp: 86.84 F</p>
-                    <p>Humidity: 43%</p>
-                  </div>
-                </div>
-                <div class="card flex-fill m-3">
-                  <div class="card-body bg-primary text-white rounded">
-                    <h5 class="card-title pb-3">XX/XX/XXXX</h5>
-                    <p class="pb-1"><i class="fas fa-sun"></i></p>
-                    <p>Temp: 86.84 F</p>
-                    <p>Humidity: 43%</p>
-                  </div>
-                </div>
-                <div class="card flex-fill m-3">
-                  <div class="card-body bg-primary text-white rounded">
-                    <h5 class="card-title pb-3">XX/XX/XXXX</h5>
-                    <p class="pb-1"><i class="fas fa-sun"></i></p>
-                    <p>Temp: 86.84 F</p>
-                    <p>Humidity: 43%</p>
-                  </div>
-                </div>
-                <div class="card flex-fill m-3">
-                  <div class="card-body bg-primary text-white rounded">
-                    <h5 class="card-title pb-3">XX/XX/XXXX</h5>
-                    <p class="pb-1"><i class="fas fa-sun"></i></p>
-                    <p>Temp: 86.84 F</p>
-                    <p>Humidity: 43%</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- Filler Today Card - needs to be  appended in w/ JS-->
+            <div id="today" class="mt-2 mb-2"></div>
+
+          <!--5-day forecast - Overall container -->
+          <div class="mt-2 mb-2">
+            <h3 id="forecastH5" class="pb-1 hide">5-Day Forecast:</h3>
+            <!-- 5-day forecast cards - needs to be appended in w/ JS -->
+            <div id="forcast"></div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12"></div>
+
+
       </div>
     </div>
 
